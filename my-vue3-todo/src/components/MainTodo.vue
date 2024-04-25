@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue'
 import { useTodoList } from '@/composables/useTodoList'
-// import BaseButton from '@/components/BaseButton.vue'
 import ButtonAdd from '@/components/ButtonAdd.vue'
 import ButtonDel from '@/components/ButtonDel.vue'
 import ButtonEdit from '@/components/ButtonEdit.vue'

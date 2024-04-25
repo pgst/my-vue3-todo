@@ -65,7 +65,7 @@ export const useTodoList = () => {
   }
 
   const countFin = computed(() => {
-    console.log('computed')
+    // console.log('computed')
     const finArr = todoList.value.filter((todo) => todo.checked)
     return finArr.length
   })
