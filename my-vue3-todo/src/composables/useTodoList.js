@@ -53,5 +53,16 @@ export const useTodoList = () => {
     localStorage.todoList = JSON.stringify(todoList.value)
   }
 
-  return { todoList, add, show, edit, del }
+  const check = (id) => {
+    const todo = findById(id)
+    const idx = findIndexById(id)
+
+    if (todo) {
+      todo.checked = !todo.checked
+      todoList.value.splice(idx, 1, todo)
+      localStorage.todoList = JSON.stringify(todoList.value)
+    }
+  }
+
+  return { todoList, add, show, edit, del, check }
 }
