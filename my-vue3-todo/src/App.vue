@@ -9,7 +9,10 @@ import TheHeader from '@/components/TheHeader.vue'
 <template>
   <div class="wrap">
     <TheHeader>ヘッダー</TheHeader>
-    <!-- <main class="main"><MainTodo /></main> -->
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </nav>
     <main class="main"><router-view /></main>
     <TheFooter>フッター</TheFooter>
   </div>
