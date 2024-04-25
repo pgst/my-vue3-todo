@@ -1,6 +1,6 @@
 <!-- ロジック（JavaScriptを書くところ） -->
 <script setup>
-import MainTodo from '@/components/MainTodo.vue'
+// import MainTodo from '@/components/MainTodo.vue'
 import TheFooter from '@/components/TheFooter.vue'
 import TheHeader from '@/components/TheHeader.vue'
 </script>
@@ -9,7 +9,8 @@ import TheHeader from '@/components/TheHeader.vue'
 <template>
   <div class="wrap">
     <TheHeader>ヘッダー</TheHeader>
-    <main class="main"><MainTodo /></main>
+    <!-- <main class="main"><MainTodo /></main> -->
+    <main class="main"><router-view /></main>
     <TheFooter>フッター</TheFooter>
   </div>
 </template>
