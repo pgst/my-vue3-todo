@@ -4,7 +4,7 @@ import { useTodoList } from '@/composables/useTodoList'
 
 const todo = ref('')
 const isEdit = ref(false)
-const { todoList, add, show, edit, del, check } = useTodoList()
+const { todoList, add, show, edit, del, check, countFin } = useTodoList()
 
 const addTodo = () => {
   if (!todo.value) return
@@ -32,6 +32,12 @@ const deleteTodo = (id) => {
 const changeCheck = (id) => {
   check(id)
 }
+
+// const countFinMethod = () => {
+//   console.log('method')
+//   const finArr = todoList.value.filter((todo) => todo.checked)
+//   return finArr.length
+// }
 </script>
 
 <template>
@@ -57,6 +63,11 @@ const changeCheck = (id) => {
         <button class="btn pink" @click="deleteTodo(todo.id)">削</button>
       </div>
     </div>
+  </div>
+
+  <div class="finCount">
+    <span>完了：{{ countFin }}、</span>
+    <span>未完了：{{ todoList.length - countFin }}</span>
   </div>
 </template>
 
@@ -126,5 +137,10 @@ const changeCheck = (id) => {
 .fin {
   text-decoration: line-through;
   background-color: #ddd;
+}
+
+.finCount {
+  margin-top: 8px;
+  font-size: 0.8em;
 }
 </style>

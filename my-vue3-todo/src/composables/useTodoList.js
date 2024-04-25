@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 export const useTodoList = () => {
   const todoList = ref([])
@@ -64,5 +64,11 @@ export const useTodoList = () => {
     }
   }
 
-  return { todoList, add, show, edit, del, check }
+  const countFin = computed(() => {
+    console.log('computed')
+    const finArr = todoList.value.filter((todo) => todo.checked)
+    return finArr.length
+  })
+
+  return { todoList, add, show, edit, del, check, countFin }
 }
