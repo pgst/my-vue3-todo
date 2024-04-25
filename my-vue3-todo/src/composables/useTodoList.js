@@ -17,7 +17,7 @@ export const useTodoList = () => {
   const add = (task) => {
     const id = new Date().getTime()
 
-    todoList.value.push({ id, task })
+    todoList.value.push({ id, task, checked: false })
 
     localStorage.todoList = JSON.stringify(todoList.value)
   }
