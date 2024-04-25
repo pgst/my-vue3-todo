@@ -1,8 +1,13 @@
 <!-- ロジック（JavaScriptを書くところ） -->
 <script setup>
-// import MainTodo from '@/components/MainTodo.vue'
 import TheFooter from '@/components/TheFooter.vue'
 import TheHeader from '@/components/TheHeader.vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const goBlog = () => {
+  router.push('/blog')
+}
 </script>
 
 <!-- テンプレート（HTMLを書くところ） -->
@@ -10,8 +15,8 @@ import TheHeader from '@/components/TheHeader.vue'
   <div class="wrap">
     <TheHeader>ヘッダー</TheHeader>
     <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">Home</router-link> | <router-link to="/about">About</router-link> |
+      <span @click="goBlog">Blog</span>
     </nav>
     <main class="main"><router-view /></main>
     <TheFooter>フッター</TheFooter>
