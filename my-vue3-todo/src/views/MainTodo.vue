@@ -1,10 +1,11 @@
 <script setup>
 import { ref } from 'vue'
-import { useTodoList } from '@/composables/useTodoList'
+
 import ButtonAdd from '@/components/ButtonAdd.vue'
 import ButtonDel from '@/components/ButtonDel.vue'
 import ButtonEdit from '@/components/ButtonEdit.vue'
 import ButtonShow from '@/components/ButtonShow.vue'
+import { useTodoList } from '@/composables/useTodoList'
 
 const todo = ref('')
 const isEdit = ref(false)

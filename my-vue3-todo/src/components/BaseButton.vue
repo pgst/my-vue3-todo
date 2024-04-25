@@ -1,5 +1,4 @@
 <script setup>
-// const props = defineProps({ color: 'blue' | 'green' | 'pink' })
 const props = defineProps({ color: String })
 const emit = defineEmits({ 'on-click': null })
 
