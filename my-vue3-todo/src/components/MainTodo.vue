@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import { useTodoList } from '@/composables/useTodoList'
 
 const todo = ref('')
 
@@ -55,8 +56,7 @@ const deleteTodo = (id) => {
   editId = -1
   todo.value = ''
 
-  const findTodo = todoList.value.find((todo) => todo.id === id)
-  const idx = todoList.value.findIndex((todo) => todo.id === id)
+  const { findTodo, idx } = useTodoList(id)
 
   if (findTodo) {
     const delMsg = '「' + findTodo.task + '」を削除しますか？'
