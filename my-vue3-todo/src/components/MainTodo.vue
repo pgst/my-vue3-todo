@@ -3,68 +3,30 @@ import { ref } from 'vue'
 import { useTodoList } from '@/composables/useTodoList'
 
 const todo = ref('')
-
-// const todoList = ref<{ id: number, task: string }[]>([]) // TypeScriptの場合
-const todoList = ref([])
-const ls = localStorage.todoList
-todoList.value = ls ? JSON.parse(ls) : []
+const isEdit = ref(false)
+const { todoList, add, show, edit, del } = useTodoList()
 
 const addTodo = () => {
-  const id = new Date().getTime()
-
-  todoList.value.push({ id: id, task: todo.value })
-
-  localStorage.todoList = JSON.stringify(todoList.value)
-
+  if (!todo.value) return
+  add(todo.value)
   todo.value = ''
 }
 
-const isEdit = ref(false)
-let editId = -1
-
-// const showTodo = (id: number) => { // TypeScriptの場合
 const showTodo = (id) => {
-  const findTodo = todoList.value.find((todo) => todo.id === id)
-
-  if (findTodo) {
-    todo.value = findTodo.task
-    isEdit.value = true
-    editId = id
-  }
+  todo.value = show(id)
+  if (todo.value) isEdit.value = true
 }
 
 const editTodo = () => {
-  const findTodo = todoList.value.find((todo) => todo.id === editId)
-
-  const idx = todoList.value.findIndex((todo) => todo.id === editId)
-
-  if (findTodo) {
-    findTodo.task = todo.value
-
-    todoList.value.splice(idx, 1, findTodo)
-
-    localStorage.todoList = JSON.stringify(todoList.value)
-
-    isEdit.value = false
-    editId = -1
-    todo.value = ''
-  }
+  if (!todo.value) return
+  edit(todo.value)
+  isEdit.value = false
+  todo.value = ''
 }
 
 const deleteTodo = (id) => {
   isEdit.value = false
-  editId = -1
-  todo.value = ''
-
-  const { findTodo, idx } = useTodoList(id)
-
-  if (findTodo) {
-    const delMsg = '「' + findTodo.task + '」を削除しますか？'
-    if (!confirm(delMsg)) return
-
-    todoList.value.splice(idx, 1)
-    localStorage.todoList = JSON.stringify(todoList.value)
-  }
+  del(id)
 }
 </script>
 
