@@ -1,7 +1,11 @@
 <script setup>
 import { ref } from 'vue'
 import { useTodoList } from '@/composables/useTodoList'
-import BaseButton from '@/components/BaseButton.vue'
+// import BaseButton from '@/components/BaseButton.vue'
+import ButtonAdd from '@/components/ButtonAdd.vue'
+import ButtonDel from '@/components/ButtonDel.vue'
+import ButtonEdit from '@/components/ButtonEdit.vue'
+import ButtonShow from '@/components/ButtonShow.vue'
 
 const todo = ref('')
 const isEdit = ref(false)
@@ -33,24 +37,13 @@ const deleteTodo = (id) => {
 const changeCheck = (id) => {
   check(id)
 }
-
-// const countFinMethod = () => {
-//   console.log('method')
-//   const finArr = todoList.value.filter((todo) => todo.checked)
-//   return finArr.length
-// }
 </script>
 
 <template>
-  <BaseButton color="bule">追加</BaseButton>
-  <BaseButton color="green">編</BaseButton>
-  <BaseButton color="pink">削</BaseButton>
-  <BaseButton color="green">変更</BaseButton>
-
   <div>
     <input type="text" class="todo_input" v-model="todo" placeholder="+ TODOを入力" />
-    <button class="btn green" @click="editTodo" v-if="isEdit">変更</button>
-    <button class="btn" @click="addTodo" v-else>追加</button>
+    <ButtonEdit @edit-click="editTodo" v-if="isEdit">変更</ButtonEdit>
+    <ButtonAdd @add-click="addTodo" v-else />
   </div>
 
   <div class="box_list">
@@ -65,8 +58,8 @@ const changeCheck = (id) => {
         <label>{{ todo.task }}</label>
       </div>
       <div class="btns">
-        <button class="btn green" @click="showTodo(todo.id)">編</button>
-        <button class="btn pink" @click="deleteTodo(todo.id)">削</button>
+        <ButtonShow @show-click="showTodo(todo.id)">編</ButtonShow>
+        <ButtonDel @del-click="deleteTodo(todo.id)">削</ButtonDel>
       </div>
     </div>
   </div>
